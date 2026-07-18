@@ -76,10 +76,35 @@
         </output>
       </section>
 
-      <section class="panel" aria-labelledby="date-diff-title">
+      <section class="panel" aria-labelledby="remaining-title">
         <div class="panel__header">
           <div class="panel__heading">
             <p class="eyebrow">Калькулятор 2</p>
+            <h2 class="panel__title" id="remaining-title">Дата закінчення придатності</h2>
+          </div>
+        </div>
+
+        <form class="form" id="remaining-form">
+          <label class="field">
+            <span class="field__label">Кінцева дата придатності</span>
+            <input class="field__control" type="date" id="best-before-date" required />
+          </label>
+
+          <div class="form__actions">
+            <button class="button" type="submit">Перевірити</button>
+            <button class="button button--secondary" type="reset">Скинути</button>
+          </div>
+        </form>
+
+        <output class="result" id="remaining-result" aria-live="polite">
+          Вкажіть кінцеву дату, щоб перевірити залишок.
+        </output>
+      </section>
+
+      <section class="panel" aria-labelledby="date-diff-title">
+        <div class="panel__header">
+          <div class="panel__heading">
+            <p class="eyebrow">Калькулятор 3</p>
             <h2 class="panel__title" id="date-diff-title">Різниця між датами</h2>
           </div>
         </div>
@@ -103,31 +128,6 @@
 
         <output class="result" id="date-diff-result" aria-live="polite">
           Вкажіть початкову та кінцеву дату.
-        </output>
-      </section>
-
-      <section class="panel" aria-labelledby="remaining-title">
-        <div class="panel__header">
-          <div class="panel__heading">
-            <p class="eyebrow">Калькулятор 3</p>
-            <h2 class="panel__title" id="remaining-title">Скільки днів залишилось</h2>
-          </div>
-        </div>
-
-        <form class="form" id="remaining-form">
-          <label class="field">
-            <span class="field__label">Кінцева дата придатності</span>
-            <input class="field__control" type="date" id="best-before-date" required />
-          </label>
-
-          <div class="form__actions">
-            <button class="button" type="submit">Перевірити</button>
-            <button class="button button--secondary" type="reset">Скинути</button>
-          </div>
-        </form>
-
-        <output class="result" id="remaining-result" aria-live="polite">
-          Вкажіть кінцеву дату, щоб перевірити залишок.
         </output>
       </section>
 
