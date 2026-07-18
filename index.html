@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Калькулятори дат для визначення строків придатності продуктів."
+    />
+    <title>Product Date Calculator</title>
+    <link rel="stylesheet" href="./src/styles/main.scss" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <div class="container header__content">
+        <div class="header__heading">
+          <p class="eyebrow">Product Date Calculator</p>
+          <h1 class="header__title">Калькулятор строків придатності продуктів</h1>
+        </div>
+        <p class="header__note">
+          Розраховуйте дату закінчення придатності, різницю між датами,
+          залишок днів та коригування бази.
+        </p>
+      </div>
+    </header>
+
+    <main class="container dashboard">
+      <section class="panel" aria-labelledby="expiry-title">
+        <div class="panel__header">
+          <div class="panel__heading">
+            <p class="eyebrow">Калькулятор 1</p>
+            <h2 class="panel__title" id="expiry-title">Дата закінчення придатності</h2>
+          </div>
+        </div>
+
+        <form class="form" id="expiry-form">
+          <label class="field">
+            <span class="field__label">Дата виробництва</span>
+            <input class="field__control" type="date" id="production-date" required />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Строк придатності</span>
+            <div class="field__row">
+              <input
+                class="field__control"
+                type="number"
+                id="shelf-life-value"
+                min="1"
+                step="1"
+                value="30"
+                required
+              />
+              <select
+                class="field__control"
+                id="shelf-life-unit"
+                aria-label="Одиниця строку придатності"
+              >
+                <option value="days">днів</option>
+                <option value="months">місяців</option>
+                <option value="years">років</option>
+              </select>
+            </div>
+          </label>
+
+          <div class="form__actions">
+            <button class="button" type="submit">Перевірити</button>
+            <button class="button button--secondary" type="reset">Скинути</button>
+          </div>
+        </form>
+
+        <output class="result" id="expiry-result" aria-live="polite">
+          Заповніть дані, щоб побачити результат.
+        </output>
+      </section>
+
+      <section class="panel" aria-labelledby="date-diff-title">
+        <div class="panel__header">
+          <div class="panel__heading">
+            <p class="eyebrow">Калькулятор 2</p>
+            <h2 class="panel__title" id="date-diff-title">Різниця між датами</h2>
+          </div>
+        </div>
+
+        <form class="form" id="date-diff-form">
+          <label class="field">
+            <span class="field__label">Початкова дата</span>
+            <input class="field__control" type="date" id="date-diff-start" required />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Кінцева дата</span>
+            <input class="field__control" type="date" id="date-diff-end" required />
+          </label>
+
+          <div class="form__actions">
+            <button class="button" type="submit">Порахувати різницю</button>
+            <button class="button button--secondary" type="reset">Скинути</button>
+          </div>
+        </form>
+
+        <output class="result" id="date-diff-result" aria-live="polite">
+          Вкажіть початкову та кінцеву дату.
+        </output>
+      </section>
+
+      <section class="panel" aria-labelledby="remaining-title">
+        <div class="panel__header">
+          <div class="panel__heading">
+            <p class="eyebrow">Калькулятор 3</p>
+            <h2 class="panel__title" id="remaining-title">Скільки днів залишилось</h2>
+          </div>
+        </div>
+
+        <form class="form" id="remaining-form">
+          <label class="field">
+            <span class="field__label">Кінцева дата придатності</span>
+            <input class="field__control" type="date" id="best-before-date" required />
+          </label>
+
+          <div class="form__actions">
+            <button class="button" type="submit">Перевірити</button>
+            <button class="button button--secondary" type="reset">Скинути</button>
+          </div>
+        </form>
+
+        <output class="result" id="remaining-result" aria-live="polite">
+          Вкажіть кінцеву дату, щоб перевірити залишок.
+        </output>
+      </section>
+
+      <section class="panel" aria-labelledby="correction-title">
+        <div class="panel__header">
+          <div class="panel__heading">
+            <p class="eyebrow">Калькулятор 4</p>
+            <h2 class="panel__title" id="correction-title">Коригування бази</h2>
+          </div>
+        </div>
+
+        <form class="form" id="correction-form">
+          <label class="field">
+            <span class="field__label">Днів у картці на момент приходу</span>
+            <input
+              class="field__control"
+              type="number"
+              id="correction-db-total"
+              step="1"
+              value="365"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span class="field__label">База показує залишок зараз</span>
+            <input
+              class="field__control"
+              type="number"
+              id="correction-db-current"
+              step="1"
+              value="150"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Фактично залишилось зараз</span>
+            <input
+              class="field__control"
+              type="number"
+              id="correction-actual-current"
+              step="1"
+              value="130"
+              required
+            />
+          </label>
+
+          <div class="form__actions">
+            <button class="button" type="submit">Порахувати корекцію</button>
+            <button class="button button--secondary" type="reset">Скинути</button>
+          </div>
+        </form>
+
+        <output class="result" id="correction-result" aria-live="polite">
+          Можна вводити додатні та від'ємні значення днів.
+        </output>
+      </section>
+
+      <section class="panel panel--wide" aria-labelledby="notes-title">
+        <div class="panel__header">
+          <div class="panel__heading">
+            <p class="eyebrow">Нотатки</p>
+            <h2 class="panel__title" id="notes-title">Швидкий список продуктів</h2>
+          </div>
+        </div>
+
+        <form class="form form--product" id="product-form">
+          <label class="field">
+            <span class="field__label">Назва продукту</span>
+            <input
+              class="field__control"
+              type="text"
+              id="product-name"
+              placeholder="Наприклад: корм для тварин"
+              maxlength="60"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Кількість днів придатності</span>
+            <input
+              class="field__control"
+              type="number"
+              id="product-days"
+              step="1"
+              placeholder="Наприклад: 45"
+              required
+            />
+          </label>
+
+          <button class="button" type="submit">Додати</button>
+        </form>
+
+        <ul class="product-list" id="product-list"></ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer__text">
+          Результати є допоміжними. Для безпечного використання продуктів завжди
+          перевіряйте інформацію на упаковці та умови зберігання.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="./src/scripts/app.js"></script>
+  </body>
+</html>

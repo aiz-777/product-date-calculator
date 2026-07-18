@@ -1,0 +1,10 @@
+
+.footer {
+  padding: $space-4 0 ($space-7);
+  color: $color-muted;
+  font-size: 0.92rem;
+
+  &__text {
+    margin: 0;
+  }
+}

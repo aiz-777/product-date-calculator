@@ -1,0 +1,17 @@
+
+@mixin on-tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin on-mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin focus-ring {
+  border-color: $color-accent;
+  outline: 3px solid rgba($color-accent, 0.18);
+}

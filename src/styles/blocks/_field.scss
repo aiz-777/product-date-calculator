@@ -1,0 +1,32 @@
+
+.field {
+  display: grid;
+  gap: $space-2;
+  color: $color-muted;
+  font-size: 0.92rem;
+  font-weight: 700;
+
+  &__control {
+    width: 100%;
+    min-height: $control-height;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 0 $space-3;
+    color: $color-text;
+    background: $color-surface;
+
+    &:focus {
+      @include focus-ring;
+    }
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(90px, 1fr) minmax(110px, 0.8fr);
+    gap: $space-2 + 2px;
+
+    @include on-mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}

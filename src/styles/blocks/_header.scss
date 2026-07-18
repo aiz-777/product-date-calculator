@@ -1,0 +1,38 @@
+
+.header {
+  padding: $space-14 0 ($space-8 + $space-1);
+  color: $color-surface;
+  background:
+    linear-gradient(rgba(24, 54, 40, 0.76), rgba(24, 54, 40, 0.76)),
+    url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80") center / cover;
+
+  @include on-tablet {
+    padding-top: $space-10;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+    gap: $space-8;
+    align-items: end;
+
+    @include on-tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__title {
+    max-width: 760px;
+    margin: $space-2 0 0;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0;
+  }
+
+  &__note {
+    margin: 0;
+    color: rgba($color-surface, 0.86);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+}

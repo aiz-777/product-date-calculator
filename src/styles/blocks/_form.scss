@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: $space-4;
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: $space-3;
+    margin-top: auto;
+
+    @include on-mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &--product {
+    display: grid;
+    grid-template-columns: 1fr 220px auto;
+    align-items: end;
+
+    @include on-tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+}

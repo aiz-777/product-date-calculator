@@ -1,0 +1,9 @@
+
+.container {
+  width: min($container-max-width, calc(100% - #{$container-padding-desktop}));
+  margin: 0 auto;
+
+  @include on-mobile {
+    width: min($container-max-width, calc(100% - #{$container-padding-mobile}));
+  }
+}

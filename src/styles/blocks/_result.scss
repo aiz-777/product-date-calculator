@@ -1,0 +1,39 @@
+
+$result-themes: (
+  ok: (
+    color: $color-accent-dark,
+    background: #eaf6ef,
+  ),
+  warning: (
+    color: $color-warning,
+    background: #fff7df,
+  ),
+  expired: (
+    color: $color-danger,
+    background: #fff0ed,
+  ),
+);
+
+.result {
+  display: block;
+  min-height: $result-min-height;
+  margin-top: auto;
+  border-radius: $radius-md;
+  padding: $space-4;
+  color: $color-text;
+  background: $color-surface-muted;
+  line-height: 1.5;
+
+  strong {
+    display: block;
+    margin-bottom: $space-1;
+    font-size: 1.15rem;
+  }
+
+  @each $name, $theme in $result-themes {
+    &--#{$name} {
+      color: map-get($theme, color);
+      background: map-get($theme, background);
+    }
+  }
+}

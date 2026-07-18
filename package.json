@@ -1,0 +1,19 @@
+{
+  "name": "product-date-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "One-page date calculators for product expiration dates.",
+  "scripts": {
+    "start": "vite --host 127.0.0.1 --open",
+    "dev": "vite --host 127.0.0.1 --open",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "sass": "^1.101.0",
+    "vite": "^7.0.0"
+  }
+}
