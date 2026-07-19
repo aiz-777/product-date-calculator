@@ -80,7 +80,7 @@ const getStatusText = (daysLeft) => {
     };
   }
 
-  if (daysLeft <= 3) {
+  if (daysLeft <= 90) {
     return {
       className: "warning",
       title: "Скоро закінчується",
@@ -213,14 +213,14 @@ correctionForm.addEventListener("submit", (event) => {
 
 bindFormReset(correctionForm, "#correction-result");
 
-productForm.addEventListener("submit", (event) => {
-  event.preventDefault();
 
-  const nameInput = document.querySelector("#product-name");
-  const daysInput = document.querySelector("#product-days");
-  const daysLeft = Number(daysInput.value);
-  const status = getStatusText(daysLeft);
+const STORAGE_KEY = "products";
 
+const loadProducts = () => JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+const saveProducts = (products) => localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+
+const renderProduct = (product) => {
+  const status = getStatusText(product.daysLeft);
   const item = document.createElement("li");
   const content = document.createElement("div");
   const productName = document.createElement("p");
@@ -228,27 +228,38 @@ productForm.addEventListener("submit", (event) => {
   const itemActions = document.createElement("div");
   const productStatus = document.createElement("span");
   const deleteButton = document.createElement("button");
-
-  item.className = "product-item";
-  productName.className = "product-item__name";
-  productMeta.className = "product-item__meta";
-  itemActions.className = "product-item__actions";
-  productStatus.className = `product-item__status product-item__status--${status.className}`;
-  deleteButton.className = "button button--danger product-item__delete";
-  deleteButton.type = "button";
-
-  productName.textContent = nameInput.value;
-  productMeta.textContent = `Залишок придатності: ${daysLeft} дн.`;
-  productStatus.textContent = status.text;
-  deleteButton.textContent = "Видалити";
-
-  deleteButton.addEventListener("click", () => {
+  item.className="product-item";
+  item.dataset.id=product.id;
+  productName.className="product-item__name";
+  productMeta.className="product-item__meta";
+  itemActions.className="product-item__actions";
+  productStatus.className=`product-item__status product-item__status--${status.className}`;
+  deleteButton.className="button button--danger product-item__delete";
+  deleteButton.type="button";
+  productName.textContent=product.name;
+  productMeta.textContent=`Залишок придатності: ${product.daysLeft} дн.`;
+  productStatus.textContent=status.text;
+  deleteButton.textContent="Видалити";
+  deleteButton.addEventListener("click",()=>{
     item.remove();
+    saveProducts(loadProducts().filter(p=>p.id!==product.id));
   });
-
-  content.append(productName, productMeta);
-  itemActions.append(productStatus, deleteButton);
-  item.append(content, itemActions);
+  content.append(productName,productMeta);
+  itemActions.append(productStatus,deleteButton);
+  item.append(content,itemActions);
   productList.prepend(item);
+};
+
+loadProducts().forEach(renderProduct);
+
+productForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const nameInput=document.querySelector("#product-name");
+  const daysInput=document.querySelector("#product-days");
+  const product={id:crypto.randomUUID(),name:nameInput.value,daysLeft:Number(daysInput.value)};
+  const products=loadProducts();
+  products.push(product);
+  saveProducts(products);
+  renderProduct(product);
   productForm.reset();
 });

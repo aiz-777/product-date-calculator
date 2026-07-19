@@ -9,7 +9,7 @@
   &__control {
     box-sizing: border-box;
     width: 100%;
-    min-height: $control-height;
+    height: $control-height;
     border: 1px solid $color-border;
     border-radius: $radius-sm;
     padding: 0 $space-3;
@@ -22,12 +22,16 @@
   }
 
   .field__control[type='date'] {
-    padding-inline: $space-3;
+    // padding-inline: $space-3;
+     appearance: none;
+  -webkit-appearance: none;
+}
 
-    @include on-mobile {
-      padding-inline: 0;
-    }
-  }
+  //   @include on-mobile {
+  //     padding-inline: 0;
+  //   }
+  // }
+
 
   &__row {
     display: grid;
